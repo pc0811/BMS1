@@ -1,0 +1,34 @@
+//
+cmake_minimum_required(VERSION 3.14)
+
+project(main LANGUAGES CXX)
+
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+find_package(Qt6 COMPONENTS Core Sql REQUIRED)
+
+# Add the path to the SQLite header file (main project directory)
+include_directories(${PROJECT_SOURCE_DIR})
+
+add_executable(${PROJECT_NAME}
+  main.cpp
+  BANKSTATE.cpp(or any file)
+)
+
+# Link against Qt modules
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Sql)
+
+# Link against SQLite3 library
+find_library(SQLITE3_LIBRARY sqlite3)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${SQLITE3_LIBRARY})
+//
+
+
+
+this is the cmakelist.txt for adding sqlite3 and linking the project to the Database
+
